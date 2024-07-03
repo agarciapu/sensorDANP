@@ -41,7 +41,7 @@ class MainActivity : ComponentActivity() {
     private var magnetometerReading = FloatArray(3)
     private var rotationMatrix = FloatArray(9)
     private var orientationAngles = FloatArray(3)
-    private var rotationAngle = 0f // Ángulo de rotación del triángulo
+    private var rotationAngle = 0f 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -63,7 +63,9 @@ fun MainScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
     ) {
-        Button(onClick = { /* Acción del botón */ }) {
+        Button(onClick = {
+
+        }) {
             Text(text = "Fijar")
         }
         DrawTriangle()
@@ -88,20 +90,17 @@ fun DrawTriangle() {
         val x3 = size - padding
         val y3 = size - padding
 
-        // Coordenadas originales del triángulo
+
         val triangleCoords = floatArrayOf(
             x1, y1,
             x2, y2,
             x3, y3
         )
 
-        // Ángulo de rotación (en radianes) para mantener la orientación fija
-        val rotationAngle = 45f // Aquí puedes ajustar el ángulo de rotación deseado
+        val rotationAngle = 45f
 
-        // Aplicar la rotación usando matrices
         val rotatedCoords = rotateTriangle(triangleCoords, rotationAngle)
 
-        // Dibujar el triángulo rotado
         drawLine(Color.Black, Offset(rotatedCoords[0], rotatedCoords[1]), Offset(rotatedCoords[2], rotatedCoords[3]))
         drawLine(Color.Black, Offset(rotatedCoords[2], rotatedCoords[3]), Offset(rotatedCoords[4], rotatedCoords[5]))
         drawLine(Color.Black, Offset(rotatedCoords[4], rotatedCoords[5]), Offset(rotatedCoords[0], rotatedCoords[1]))
